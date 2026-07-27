@@ -121,6 +121,9 @@
     0%,100%{box-shadow:0 0 0 0 rgba(76,175,125,0.6);}
     50%{box-shadow:0 0 0 6px rgba(76,175,125,0);}
   }
+  .subscriber-badge.on-light{
+    background:rgba(173,140,72,0.08);color:var(--text);border-color:var(--gold);
+  }
   h1{
     font-family:var(--serif);
     font-size:clamp(34px, 5.4vw, 58px);
@@ -323,9 +326,106 @@
   }
   .admin-close{position:absolute;top:14px;right:16px;}
   .admin-count{font-family:var(--mono);font-size:13px;color:var(--green);margin-bottom:4px;}
+
+  /* ---------- SCROLL PROGRESS BAR ---------- */
+  .scroll-progress{
+    position:fixed;top:0;left:0;height:3px;background:var(--red);
+    width:0%;z-index:200;transition:width .1s ease-out;
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  /* ---------- HERO ENTRANCE ANIMATION ---------- */
+  .hero-inner > *{opacity:0;transform:translateY(16px);animation:hero-in .6s ease forwards;}
+  .hero-inner > *:nth-child(1){animation-delay:.05s;}
+  .hero-inner > *:nth-child(2){animation-delay:.15s;}
+  .hero-inner > *:nth-child(3){animation-delay:.25s;}
+  .hero-inner > *:nth-child(4){animation-delay:.35s;}
+  .hero-inner > *:nth-child(5){animation-delay:.45s;}
+  .hero-inner > *:nth-child(6){animation-delay:.5s;}
+  .hero-inner > *:nth-child(7){animation-delay:.55s;}
+  @keyframes hero-in{to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- HOVER POLISH ---------- */
+  .aud-card, .ledger-cell, .qa-item, .issue-preview{transition:transform .2s ease, box-shadow .2s ease;}
+  .aud-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(20,27,46,0.08);position:relative;z-index:1;}
+  .ledger-cell:hover{background:var(--paper-high);}
+  .btn-primary{transition:background .15s, transform .12s, box-shadow .15s;}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(154,43,35,0.25);}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(20,27,46,0.2);}
+
+  /* ---------- STICKY MINI SUBSCRIBE BAR ---------- */
+  .sticky-bar{
+    position:fixed;bottom:0;left:0;right:0;background:var(--ink);color:var(--paper);
+    padding:14px 0;z-index:90;transform:translateY(100%);transition:transform .3s ease;
+    border-top:1px solid var(--line-onink);
+  }
+  .sticky-bar.show{transform:translateY(0);}
+  .sticky-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .sticky-bar-text{font-family:var(--serif);font-size:15px;font-weight:600;}
+  .sticky-bar-text span{color:var(--gold);}
+
+  /* ---------- ISSUE PREVIEW ---------- */
+  .issue-preview-section{padding:88px 0;border-bottom:1px solid var(--line);}
+  .issue-frame{
+    max-width:520px;margin:0 auto;background:#fff;border-radius:8px;
+    box-shadow:0 30px 60px rgba(20,27,46,0.18);overflow:hidden;border:1px solid var(--line);
+  }
+  .issue-frame-bar{
+    background:var(--paper-high);padding:10px 16px;display:flex;gap:6px;border-bottom:1px solid var(--line);
+  }
+  .issue-frame-dot{width:9px;height:9px;border-radius:50%;background:var(--line);}
+  .issue-frame-body{padding:32px 28px;}
+  .issue-frame-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .issue-frame-body h3{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);margin:20px 0 8px;}
+  .issue-frame-body h3:first-of-type{margin-top:0;}
+  .issue-frame-body p{font-size:13.5px;color:var(--text-soft);line-height:1.6;}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-section{padding:88px 0;border-bottom:1px solid var(--line);}
+  .quiz-box{max-width:600px;background:var(--paper-high);border:1px solid var(--line);border-radius:6px;padding:40px;text-align:center;}
+  .quiz-step{display:none;}
+  .quiz-step.active{display:block;}
+  .quiz-question{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:24px;}
+  .quiz-options{display:flex;flex-direction:column;gap:10px;}
+  .quiz-option{
+    background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px 18px;
+    font-size:14.5px;font-weight:500;cursor:pointer;text-align:left;transition:border-color .15s, background .15s;
+    font-family:var(--sans);
+  }
+  .quiz-option:hover{border-color:var(--gold);background:var(--paper-high);}
+  .quiz-progress{display:flex;gap:6px;justify-content:center;margin-bottom:24px;}
+  .quiz-dot{width:8px;height:8px;border-radius:50%;background:var(--line);}
+  .quiz-dot.active{background:var(--red);}
+  .quiz-result{font-size:14.5px;color:var(--text-soft);margin-top:8px;}
+
+  /* ---------- EXPANDABLE AGENDA ---------- */
+  .agenda-item{cursor:pointer;}
+  .agenda-body .agenda-more{
+    max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;color:var(--text-soft);
+  }
+  .agenda-item.open .agenda-more{max-height:120px;margin-top:10px;}
+  .agenda-expand-icon{font-family:var(--mono);color:var(--red);transition:transform .2s;flex-shrink:0;}
+  .agenda-item.open .agenda-expand-icon{transform:rotate(45deg);}
+
+  /* ---------- NEXT ISSUE COUNTDOWN ---------- */
+  .countdown-strip{background:var(--ink-soft);padding:14px 0;text-align:center;}
+  .countdown-strip .wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
+  .countdown-text{font-family:var(--mono);font-size:12.5px;color:rgba(232,233,225,0.75);letter-spacing:0.02em;}
+  .countdown-text strong{color:var(--gold);}
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<div class="countdown-strip">
+  <div class="wrap">
+    <span class="countdown-text">Next issue in <strong id="countdown-days">—</strong> — <span id="countdown-date">—</span></span>
+  </div>
+</div>
 
 <div class="masthead-strip">
   <div class="wrap">
@@ -362,8 +462,8 @@
       <span class="live-dot"></span>
       <span>Join <span id="subscriber-count">0</span> people getting smarter about UK politics every week</span>
     </div>
-    <h1>Most people never read the policy that <em>changes their cost of living.</em></h1>
-    <p class="lead">PocketPolitics turns Westminster decisions and Bank of England moves into plain, useful sense — before they show up in your bills, your business, or your ballot.</p>
+    <h1 id="hero-headline">Most people never read the policy that <em>changes their cost of living.</em></h1>
+    <p class="lead" id="hero-subheadline">PocketPolitics turns Westminster decisions and Bank of England moves into plain, useful sense — before they show up in your bills or your ballot.</p>
     <form id="hero-form" class="signup-row" novalidate>
       <input type="email" id="hero-email" placeholder="you@email.com" required aria-label="Email address">
       <button type="submit" class="btn-primary">Get started</button>
@@ -374,7 +474,34 @@
   </div>
 </header>
 
-<section class="ledger" id="numbers">
+<section class="issue-preview-section reveal">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin:0 auto 44px;">
+      <div class="kicker">See It Before You Subscribe</div>
+      <h2>What actually lands in your inbox</h2>
+    </div>
+    <div class="issue-frame">
+      <div class="issue-frame-bar">
+        <div class="issue-frame-dot"></div>
+        <div class="issue-frame-dot"></div>
+        <div class="issue-frame-dot"></div>
+      </div>
+      <div class="issue-frame-body">
+        <div class="issue-frame-kicker">PocketPolitics &middot; Issue No. <span class="preview-issue-number">118</span></div>
+        <h3>01 &middot; Westminster, decoded</h3>
+        <p id="preview-text-1">The Commons passed the second reading of the Employment Rights Bill 312–201 — here's what actually changes for your pay and workplace rights from April, not just who voted which way.</p>
+        <h3>02 &middot; The economic read</h3>
+        <p id="preview-text-2">The Bank held rates at 4.25% this week. Markets had priced in a cut — here's why they didn't get one, and what it likely means for your mortgage renewal this year.</p>
+        <h3>03 &middot; What it means for you</h3>
+        <p id="preview-text-3">If you're renewing a fixed-rate mortgage in the next six months, this section breaks down what today's decision changes for you specifically.</p>
+        <h3>04 &middot; What to watch next</h3>
+        <p id="preview-text-4">The Autumn Budget date, a by-election that could shift the Commons arithmetic, and the next inflation print — all in one line each.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ledger reveal" id="numbers">
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">Why This Exists</div>
@@ -400,7 +527,7 @@
   </div>
 </section>
 
-<section class="quote-band">
+<section class="quote-band reveal">
   <div class="wrap">
     <div class="quote-mark">&ldquo;</div>
     <blockquote>Political language is designed to make lies sound truthful and murder respectable, and to give an appearance of solidity to pure wind.</blockquote>
@@ -408,13 +535,13 @@
   </div>
 </section>
 
-<section class="audience" id="who">
+<section class="audience reveal" id="who">
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">Who It's For</div>
       <h2>Built for anyone who has to make decisions, not just discuss them.</h2>
     </div>
-    <div class="aud-grid">
+    <div class="aud-grid" style="grid-template-columns:repeat(2,1fr);">
       <div class="aud-card">
         <div class="aud-tag">Households</div>
         <h3>Know it before the bill does</h3>
@@ -425,16 +552,11 @@
         <h3>The story, minus the noise</h3>
         <p>What actually happened in Parliament and the economy this week, why it matters, and what's likely next — in a few minutes, not a few hours of news.</p>
       </div>
-      <div class="aud-card">
-        <div class="aud-tag">Companies</div>
-        <h3>Board-ready, before the trade press</h3>
-        <p>Regulatory shifts, interest rate decisions, and trade policy changes summarised for teams who need the implications, not just the headline.</p>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="agenda" id="inside">
+<section class="agenda reveal" id="inside">
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">What's Inside, Every Week</div>
@@ -444,36 +566,87 @@
       <div class="agenda-item">
         <div class="agenda-time">01</div>
         <div class="agenda-body">
-          <h4>Westminster, decoded</h4>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <h4>Westminster, decoded</h4>
+            <span class="agenda-expand-icon">+</span>
+          </div>
           <p>The votes, bills, and reshuffles that matter — with what each one actually changes, not just who said what.</p>
+          <div class="agenda-more"><p>Expect a short "what happened / what it means" pairing for every major vote — no live-blog play-by-play, just the outcome and its consequence.</p></div>
         </div>
       </div>
       <div class="agenda-item">
         <div class="agenda-time">02</div>
         <div class="agenda-body">
-          <h4>The economic read</h4>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <h4>The economic read</h4>
+            <span class="agenda-expand-icon">+</span>
+          </div>
           <p>Inflation, interest rates, and the Treasury's next move — translated out of Bank of England language into plain English.</p>
+          <div class="agenda-more"><p>Includes a plain-English translation of the week's key economic release, without needing a finance degree to follow it.</p></div>
         </div>
       </div>
       <div class="agenda-item">
         <div class="agenda-time">03</div>
         <div class="agenda-body">
-          <h4>What it means for you</h4>
-          <p>A short, direct section connecting the week's changes to household budgets, personal finances, or business planning.</p>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <h4>What it means for you</h4>
+            <span class="agenda-expand-icon">+</span>
+          </div>
+          <p>A short, direct section connecting the week's changes to household budgets and personal finances.</p>
+          <div class="agenda-more"><p>Tailored by the audience you signed up as — household or individual — so it stays relevant to you specifically.</p></div>
         </div>
       </div>
       <div class="agenda-item">
         <div class="agenda-time">04</div>
         <div class="agenda-body">
-          <h4>What to watch next</h4>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <h4>What to watch next</h4>
+            <span class="agenda-expand-icon">+</span>
+          </div>
           <p>The votes, data releases, and decisions coming up — so you're never caught off guard by what's next.</p>
+          <div class="agenda-more"><p>A quick-glance calendar of what's coming in the next 1-2 weeks, so nothing catches you by surprise.</p></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="faq" id="faq">
+<section class="quiz-section reveal">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin:0 auto 44px;">
+      <div class="kicker">Not Sure If This Is For You?</div>
+      <h2>Find your briefing in two clicks</h2>
+    </div>
+    <div class="quiz-box">
+      <div class="quiz-progress">
+        <span class="quiz-dot active" data-step="1"></span>
+        <span class="quiz-dot" data-step="2"></span>
+      </div>
+
+      <div class="quiz-step active" data-step="1">
+        <div class="quiz-question">Are you signing up for yourself or your household?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-category="Individual">Just me</button>
+          <button class="quiz-option" data-category="Household">My household</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-question">What matters most to you right now?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-interest="Tax & personal finance">Tax &amp; personal finance</button>
+          <button class="quiz-option" data-interest="Interest rates & housing">Interest rates &amp; housing</button>
+          <button class="quiz-option" data-interest="Business & regulation">Business &amp; regulation</button>
+          <button class="quiz-option" data-interest="General UK politics">General UK politics</button>
+        </div>
+      </div>
+
+      <p class="quiz-result" id="quiz-result" style="display:none;"></p>
+    </div>
+  </div>
+</section>
+
+<section class="faq reveal" id="faq">
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">Common Questions</div>
@@ -512,11 +685,15 @@
   </div>
 </section>
 
-<section class="reader-qa" id="questions">
+<section class="reader-qa reveal" id="questions">
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">From Readers</div>
       <h2>Ask a question — a few get answered in each issue</h2>
+      <div class="subscriber-badge on-light" id="question-count-badge" style="display:none;margin-top:16px;margin-bottom:0;">
+        <span class="live-dot"></span>
+        <span><span id="question-count">0</span> questions answered so far</span>
+      </div>
     </div>
 
     <div id="public-qa-list" class="qa-list"></div>
@@ -533,7 +710,7 @@
   </div>
 </section>
 
-<section class="signup-band" id="subscribe">
+<section class="signup-band reveal" id="subscribe">
   <div class="wrap">
     <h2>Get the version of UK politics and economics that's actually written for you.</h2>
     <p class="lead">Free to join. A few quick details help us tailor what you get. Arrives every week, no exceptions.</p>
@@ -578,7 +755,6 @@
               <option value="" disabled selected>Select one</option>
               <option>Household</option>
               <option>Individual</option>
-              <option>Company</option>
             </select>
           </div>
           <div class="form-field">
@@ -615,7 +791,6 @@
     <div class="trust-row">
       <span>For households</span>
       <span>For individuals</span>
-      <span>For companies</span>
     </div>
   </div>
 </section>
@@ -625,7 +800,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-brand">PocketPolitics</div>
-        <p class="footer-desc">A weekly, plain-English briefing on UK politics and economics — for households, individuals, and companies who'd rather understand it than skim it.</p>
+        <p class="footer-desc">A weekly, plain-English briefing on UK politics and economics — for households and individuals who'd rather understand it than skim it.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
@@ -648,6 +823,13 @@
     </div>
   </div>
 </footer>
+
+<div class="sticky-bar" id="sticky-bar">
+  <div class="wrap">
+    <div class="sticky-bar-text">Get <span>PocketPolitics</span> in your inbox every week — free.</div>
+    <a href="#subscribe" class="btn-primary" id="sticky-bar-cta" style="text-decoration:none;">Subscribe</a>
+  </div>
+</div>
 
 <div class="admin-overlay" id="admin-overlay">
   <div class="admin-box" style="position:relative;">
@@ -689,6 +871,11 @@
       </div>
 
       <div class="admin-list" style="margin-top:26px;">
+        <h3 style="font-size:17px;">This week's snapshot</h3>
+        <p class="small" id="admin-analytics-summary">Loading…</p>
+      </div>
+
+      <div class="admin-list" style="margin-top:26px;">
         <h3 style="font-size:17px;">Site controls</h3>
         <p class="small">These update live on the site — no need to touch any code.</p>
 
@@ -708,8 +895,41 @@
           <span>Show live subscriber count on site</span>
         </label>
 
+        <label class="admin-label" style="margin-top:18px;">Hero headline</label>
+        <input type="text" id="site-headline" placeholder="Main headline text">
+
+        <label class="admin-label" style="margin-top:10px;">Hero subheadline</label>
+        <input type="text" id="site-subheadline" placeholder="Supporting line under the headline">
+
         <button class="btn-primary" id="site-settings-save" style="margin-top:14px;">Save site settings</button>
         <p class="form-msg" id="site-settings-msg"></p>
+      </div>
+
+      <div class="admin-list" style="margin-top:26px;">
+        <h3 style="font-size:17px;">Show / hide sections</h3>
+        <p class="small">Temporarily hide a section from the live site without deleting anything.</p>
+        <label class="admin-checkbox-row"><input type="checkbox" class="section-toggle" data-section="numbers" checked><span>The Numbers</span></label>
+        <label class="admin-checkbox-row"><input type="checkbox" class="section-toggle" data-section="who" checked><span>Who It's For</span></label>
+        <label class="admin-checkbox-row"><input type="checkbox" class="section-toggle" data-section="inside" checked><span>What's Inside</span></label>
+        <label class="admin-checkbox-row"><input type="checkbox" class="section-toggle" data-section="faq" checked><span>FAQ</span></label>
+        <label class="admin-checkbox-row"><input type="checkbox" class="section-toggle" data-section="questions" checked><span>Reader Questions</span></label>
+        <button class="btn-primary" id="section-toggles-save" style="margin-top:14px;">Save section visibility</button>
+        <p class="form-msg" id="section-toggles-msg"></p>
+      </div>
+
+      <div class="admin-list" style="margin-top:26px;">
+        <h3 style="font-size:17px;">Sample issue preview</h3>
+        <p class="small">This is the mock issue shown on the site to preview what subscribers get. Edit each part below.</p>
+        <label class="admin-label">01 — Westminster, decoded</label>
+        <textarea id="preview-section-1" style="width:100%;min-height:50px;padding:10px;border:1px solid var(--line);border-radius:2px;font-family:var(--sans);font-size:13px;margin-bottom:10px;"></textarea>
+        <label class="admin-label">02 — The economic read</label>
+        <textarea id="preview-section-2" style="width:100%;min-height:50px;padding:10px;border:1px solid var(--line);border-radius:2px;font-family:var(--sans);font-size:13px;margin-bottom:10px;"></textarea>
+        <label class="admin-label">03 — What it means for you</label>
+        <textarea id="preview-section-3" style="width:100%;min-height:50px;padding:10px;border:1px solid var(--line);border-radius:2px;font-family:var(--sans);font-size:13px;margin-bottom:10px;"></textarea>
+        <label class="admin-label">04 — What to watch next</label>
+        <textarea id="preview-section-4" style="width:100%;min-height:50px;padding:10px;border:1px solid var(--line);border-radius:2px;font-family:var(--sans);font-size:13px;margin-bottom:10px;"></textarea>
+        <button class="btn-primary" id="preview-content-save">Save sample issue</button>
+        <p class="form-msg" id="preview-content-msg"></p>
       </div>
 
       <div class="admin-list" style="margin-top:26px;">
@@ -1213,6 +1433,247 @@
   }
 
   document.getElementById('admin-q-refresh').addEventListener('click', loadAdminQuestions);
+
+  // --- Scroll progress bar ---
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('scroll-progress').style.width = pct + '%';
+  });
+
+  // --- Scroll-reveal animation for sections ---
+  (function setupReveal(){
+    const items = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(el => observer.observe(el));
+  })();
+
+  // --- Sticky mini subscribe bar: shows once you scroll past the hero ---
+  (function setupStickyBar(){
+    const bar = document.getElementById('sticky-bar');
+    const hero = document.querySelector('.hero');
+    const heroBottom = () => hero.offsetTop + hero.offsetHeight;
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > heroBottom()){
+        bar.classList.add('show');
+      } else {
+        bar.classList.remove('show');
+      }
+    });
+  })();
+
+  // --- Next issue countdown, based on the same "next Sunday" logic as the emails ---
+  (function setupCountdown(){
+    const now = new Date();
+    const day = now.getDay();
+    let daysUntilSunday = (7 - day) % 7;
+    if(daysUntilSunday === 0) daysUntilSunday = 7;
+    const nextSunday = new Date(now.getTime() + daysUntilSunday * 24 * 60 * 60 * 1000);
+    document.getElementById('countdown-days').textContent = daysUntilSunday + (daysUntilSunday === 1 ? ' day' : ' days');
+    document.getElementById('countdown-date').textContent = nextSunday.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' });
+  })();
+
+  // --- Expandable agenda items ---
+  document.querySelectorAll('.agenda-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+
+  // --- Quiz: two clicks, then scroll to signup with fields pre-filled ---
+  (function setupQuiz(){
+    let chosenCategory = '';
+    const step1 = document.querySelector('.quiz-step[data-step="1"]');
+    const step2 = document.querySelector('.quiz-step[data-step="2"]');
+    const dot1 = document.querySelector('.quiz-dot[data-step="1"]');
+    const dot2 = document.querySelector('.quiz-dot[data-step="2"]');
+    const resultEl = document.getElementById('quiz-result');
+
+    step1.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        chosenCategory = btn.dataset.category;
+        step1.classList.remove('active');
+        step2.classList.add('active');
+        dot1.classList.remove('active');
+        dot2.classList.add('active');
+      });
+    });
+
+    step2.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chosenInterest = btn.dataset.interest;
+        resultEl.style.display = 'block';
+        resultEl.textContent = "Taking you to sign-up with those pre-filled…";
+        document.getElementById('subscribe').scrollIntoView({behavior:'smooth'});
+        setTimeout(() => {
+          const mainEmail = document.getElementById('main-email');
+          goToStep2();
+          mainEmail.focus();
+          const categorySelect = document.getElementById('main-category');
+          const interestSelect = document.getElementById('main-interest');
+          if(categorySelect) categorySelect.value = chosenCategory;
+          if(interestSelect) interestSelect.value = chosenInterest;
+        }, 500);
+      });
+    });
+  })();
+
+  // --- Extended site settings: headline, subheadline, sample issue content, section visibility ---
+  async function loadExtendedSettingsIntoAdmin(){
+    try{
+      const res = await fetch(SCRIPT_URL + '?action=getSettings');
+      const data = await res.json();
+      if(data.heroHeadline) document.getElementById('site-headline').value = data.heroHeadline;
+      if(data.heroSubheadline) document.getElementById('site-subheadline').value = data.heroSubheadline;
+      if(data.previewSection1) document.getElementById('preview-section-1').value = data.previewSection1;
+      if(data.previewSection2) document.getElementById('preview-section-2').value = data.previewSection2;
+      if(data.previewSection3) document.getElementById('preview-section-3').value = data.previewSection3;
+      if(data.previewSection4) document.getElementById('preview-section-4').value = data.previewSection4;
+      const hiddenSections = (data.hiddenSections || '').split(',').filter(Boolean);
+      document.querySelectorAll('.section-toggle').forEach(cb => {
+        cb.checked = !hiddenSections.includes(cb.dataset.section);
+      });
+    }catch(e){ /* fields just stay at defaults */ }
+  }
+
+  function applyExtendedSettings(data){
+    if(data.heroHeadline) document.getElementById('hero-headline').textContent = data.heroHeadline;
+    if(data.heroSubheadline) document.getElementById('hero-subheadline').textContent = data.heroSubheadline;
+    if(data.previewSection1) document.getElementById('preview-text-1').textContent = data.previewSection1;
+    if(data.previewSection2) document.getElementById('preview-text-2').textContent = data.previewSection2;
+    if(data.previewSection3) document.getElementById('preview-text-3').textContent = data.previewSection3;
+    if(data.previewSection4) document.getElementById('preview-text-4').textContent = data.previewSection4;
+    if(data.issueNumber){
+      document.querySelectorAll('.preview-issue-number').forEach(el => el.textContent = data.issueNumber);
+    }
+    const hiddenSections = (data.hiddenSections || '').split(',').filter(Boolean);
+    hiddenSections.forEach(id => {
+      const section = document.getElementById(id);
+      if(section) section.style.display = 'none';
+    });
+  }
+
+  document.getElementById('preview-content-save').addEventListener('click', async () => {
+    const msg = document.getElementById('preview-content-msg');
+    msg.className = 'form-msg'; msg.textContent = 'Saving…';
+    try{
+      const params = new URLSearchParams({
+        action: 'updateExtendedSettings', pass: verifiedPass,
+        previewSection1: document.getElementById('preview-section-1').value,
+        previewSection2: document.getElementById('preview-section-2').value,
+        previewSection3: document.getElementById('preview-section-3').value,
+        previewSection4: document.getElementById('preview-section-4').value
+      });
+      const res = await fetch(SCRIPT_URL + '?' + params.toString());
+      const data = await res.json();
+      if(data.ok){
+        msg.textContent = 'Saved — refresh the site to see it live.';
+        msg.classList.add('ok');
+      } else {
+        msg.textContent = data.message || 'Could not save.';
+        msg.classList.add('err');
+      }
+    }catch(e){
+      msg.textContent = 'Could not reach the server.';
+      msg.classList.add('err');
+    }
+  });
+
+  document.getElementById('section-toggles-save').addEventListener('click', async () => {
+    const msg = document.getElementById('section-toggles-msg');
+    msg.className = 'form-msg'; msg.textContent = 'Saving…';
+    const hidden = [];
+    document.querySelectorAll('.section-toggle').forEach(cb => {
+      if(!cb.checked) hidden.push(cb.dataset.section);
+    });
+    try{
+      const params = new URLSearchParams({
+        action: 'updateExtendedSettings', pass: verifiedPass,
+        hiddenSections: hidden.join(',')
+      });
+      const res = await fetch(SCRIPT_URL + '?' + params.toString());
+      const data = await res.json();
+      if(data.ok){
+        msg.textContent = 'Saved — refresh the site to see it live.';
+        msg.classList.add('ok');
+      } else {
+        msg.textContent = data.message || 'Could not save.';
+        msg.classList.add('err');
+      }
+    }catch(e){
+      msg.textContent = 'Could not reach the server.';
+      msg.classList.add('err');
+    }
+  });
+
+  // Extend the headline/subheadline save into the existing site-settings-save button
+  document.getElementById('site-settings-save').addEventListener('click', async () => {
+    try{
+      const params = new URLSearchParams({
+        action: 'updateExtendedSettings', pass: verifiedPass,
+        heroHeadline: document.getElementById('site-headline').value,
+        heroSubheadline: document.getElementById('site-subheadline').value
+      });
+      await fetch(SCRIPT_URL + '?' + params.toString());
+    }catch(e){ /* main save handler already shows its own message */ }
+  });
+
+  // --- Analytics snapshot in the admin panel ---
+  async function loadAnalyticsSnapshot(){
+    const el = document.getElementById('admin-analytics-summary');
+    try{
+      const url = SCRIPT_URL + '?action=getAnalytics&pass=' + encodeURIComponent(verifiedPass);
+      const res = await fetch(url);
+      const data = await res.json();
+      if(data.ok){
+        el.textContent = data.thisWeek + ' signups this week (vs ' + data.lastWeek + ' last week) · ' + data.totalConfirmed + ' confirmed subscribers total';
+      } else {
+        el.textContent = data.message || 'Could not load.';
+      }
+    }catch(e){
+      el.textContent = 'Could not load analytics right now.';
+    }
+  }
+
+  // Extend admin question count + analytics + extended settings loading into the existing login flow
+  const originalAdminSubmit = document.getElementById('admin-submit');
+  originalAdminSubmit.addEventListener('click', () => {
+    setTimeout(() => {
+      if(verifiedPass){
+        loadExtendedSettingsIntoAdmin();
+        loadAnalyticsSnapshot();
+      }
+    }, 400);
+  });
+
+  // --- Public: apply extended settings + question count on every page visit ---
+  (async function loadPublicExtendedSettings(){
+    try{
+      const res = await fetch(SCRIPT_URL + '?action=getSettings');
+      const data = await res.json();
+      applyExtendedSettings(data);
+    }catch(e){ /* keep defaults */ }
+  })();
+
+  (async function loadQuestionCount(){
+    try{
+      const res = await fetch(SCRIPT_URL + '?action=getPublicQuestions');
+      const data = await res.json();
+      const count = (data.questions || []).length;
+      if(count > 0){
+        document.getElementById('question-count').textContent = count;
+        document.getElementById('question-count-badge').style.display = 'inline-flex';
+      }
+    }catch(e){ /* badge stays hidden */ }
+  })();
 </script>
 
 </body>
